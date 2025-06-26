@@ -69,6 +69,7 @@ public class ScheduleService {
 	            dbSchedule.setArrivalTime(updatedSchedule.getArrivalTime());
 	        if (updatedSchedule.getFarePerSeat() != 0.0)  // or != null if using wrapper class
 	            dbSchedule.setFarePerSeat(updatedSchedule.getFarePerSeat());
+	    
 
 	        return scheduleRepository.save(dbSchedule);
 	    }

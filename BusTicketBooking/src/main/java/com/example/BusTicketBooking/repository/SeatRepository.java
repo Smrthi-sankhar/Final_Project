@@ -15,6 +15,8 @@ public interface SeatRepository  extends JpaRepository<Seat, Integer>{
 		List<Seat> findByScheduleAndStatus(Schedule schedule, String status);
 
 		List<Seat> findBySchedule(Schedule schedule);
+
+		List<Seat> findByScheduleIdAndStatus(int scheduleId, String status);
 		
 
 }

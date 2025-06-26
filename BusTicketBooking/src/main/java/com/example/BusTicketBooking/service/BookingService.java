@@ -2,9 +2,13 @@ package com.example.BusTicketBooking.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import com.example.BusTicketBooking.dto.BookingDto;
+import com.example.BusTicketBooking.dto.BookingResponseDto;
+import com.example.BusTicketBooking.exception.ResourceNotFoundException;
 import com.example.BusTicketBooking.model.Booking;
 import com.example.BusTicketBooking.model.Passenger;
 import com.example.BusTicketBooking.model.Schedule;
@@ -97,7 +101,34 @@ public class BookingService {
 
 	        bookingRepo.deleteById(id);
 	    }
+	    public BookingDto getBookingDetailsById(int id) {
+	        Booking booking = bookingRepo.findById(id)
+	            .orElseThrow(() -> new ResourceNotFoundException("Booking not found with id " + id));
+
+	        BookingDto dto = new BookingDto();
+	        dto.setId(booking.getId());
+	        dto.setPassengerName(booking.getPassenger().getName());
+	        dto.setContactNo(booking.getPassenger().getContact());
+	        dto.setBusNumber(booking.getSchedule().getBus().getBusNumber());
+	        dto.setFarePerSeat(booking.getTotalFare());
+	        dto.setTotalFare(booking.getTotalFare());
+	        dto.setSeatNumber(
+	            booking.getSeats().stream().map(Seat::getSeatNumber).collect(Collectors.toList())
+	        );
+	        // Set other details like route source/destination
+	        return dto;
+	    }
+		public List<BookingResponseDto> getBookingsByPassengerUsername(String username) {
+			Passenger passenger = passengerRepo.findPassengerByUsername(username)
+			        .orElseThrow(() -> new ResourceNotFoundException("Passenger not found"));
+
+			    List<Booking> bookings = bookingRepo.findByPassengerId(passenger.getId());
+
+			    return bookings.stream()
+			        .map(BookingResponseDto::fromEntity)
+			        .collect(Collectors.toList());
 	}
+}
 
 
 

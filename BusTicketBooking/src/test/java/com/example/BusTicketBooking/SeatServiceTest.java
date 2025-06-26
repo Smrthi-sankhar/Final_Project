@@ -96,7 +96,7 @@ public class SeatServiceTest {
 
 	        when(seatDto.convertSeatIntoDto(mockSeats)).thenReturn(mockDtoList);
 
-	        List<com.example.BusTicketBooking.dto.SeatDto> result = seatService.getAllSeatsBySchedule(1);
+	        List<Seat> result = seatService.getAllSeatsBySchedule(1);
 
 	        assertEquals(3, result.size());
 	        verify(seatDto).convertSeatIntoDto(mockSeats);

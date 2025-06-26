@@ -21,9 +21,9 @@ public class Booking{
 	    private Passenger passenger;
 	    @ManyToOne
 	    private Schedule schedule;
-	    @ManyToMany
-	    private List<Seat> seats;
-	    private LocalDateTime bookingTime;
+	  
+	  
+		private LocalDateTime bookingTime;
 	    private String status; // e.g., "CONFIRMED", "CANCELLED"
 
 		
@@ -57,12 +57,7 @@ public class Booking{
 		public void setSchedule(Schedule schedule) {
 			this.schedule = schedule;
 		}
-		public List<Seat> getSeats() {
-			return seats;
-		}
-		public void setSeats(List<Seat> seats) {
-			this.seats = seats;
-		}
+	
 		public LocalDateTime getBookingTime() {
 			return bookingTime;
 		}

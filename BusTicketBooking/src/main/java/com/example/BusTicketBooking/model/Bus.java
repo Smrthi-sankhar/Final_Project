@@ -17,6 +17,7 @@ public class Bus {
     private String busType;
     private int totalSeats;
 
+
     @ManyToOne
     @JoinColumn(name = "operator_id")
     private Operator operator;
@@ -24,6 +25,8 @@ public class Bus {
     @ManyToOne
     @JoinColumn(name = "route_id")
     private Route route;
+
+
 
 	public int getId() {
 		return id;

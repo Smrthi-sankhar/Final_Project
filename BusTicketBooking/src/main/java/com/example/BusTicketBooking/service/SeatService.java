@@ -71,15 +71,21 @@ return seatRepository.findByScheduleAndStatus(schedule, "AVAILABLE");
 
 
 
-        public List<SeatDto> getAllSeatsBySchedule(int scheduleId) {
+       /* public List<SeatDto> getAllSeatsBySchedule(int scheduleId) {
             Schedule schedule = scheduleRepository.findById(scheduleId)
                     .orElseThrow(() -> new RuntimeException("Invalid Schedule ID"));
 
-            List<Seat> seatList = seatRepository.findBySchedule(schedule);
+           List<Seat> seatList = seatRepository.findBySchedule(schedule);
 
             return seatDto.convertSeatIntoDto(seatList);
-        }
+        }*/
 
+        public List<Seat> getAllSeatsBySchedule(int scheduleId) {
+            Schedule schedule = scheduleRepository.findById(scheduleId)
+                    .orElseThrow(() -> new RuntimeException("Invalid Schedule ID"));
+
+            return seatRepository.findBySchedule(schedule);
+        }
 
         public void bookSeat(int seatId) {
             Seat seat = seatRepository.findById(seatId)
@@ -94,5 +100,12 @@ return seatRepository.findByScheduleAndStatus(schedule, "AVAILABLE");
             seat.setStatus("AVAILABLE");
             seatRepository.save(seat);
         }
+
+
+
+
+		public List<Seat> findByScheduleIdAndStatus(int scheduleId, String status) {
+			 return seatRepository.findByScheduleIdAndStatus(scheduleId, status);
+		}
     }
 

@@ -16,6 +16,13 @@ public class Operator {
 	@Column(name="company_name")
 	private String companyName;
 	private String name;
+	 private String profilePic;
+	public String getProfilePic() {
+		return profilePic;
+	}
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
 	@OneToOne
 	private User user;
 	public User getUser() {

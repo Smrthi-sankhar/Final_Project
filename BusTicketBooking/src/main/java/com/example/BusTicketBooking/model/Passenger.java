@@ -15,6 +15,13 @@ public class Passenger {
 	@Column(nullable=false)
 	private String name;
 	private String contact;
+	private String profilePic;
+	public String getProfilePic() {
+		return profilePic;
+	}
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
 	@OneToOne
 	private User user;
 	

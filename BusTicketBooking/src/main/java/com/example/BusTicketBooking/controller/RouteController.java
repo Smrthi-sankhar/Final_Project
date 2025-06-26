@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/route")
+@CrossOrigin(origins = "http://localhost:5173")
 public class RouteController {
 
     @Autowired
@@ -29,7 +30,7 @@ public class RouteController {
         return ResponseEntity.status(HttpStatus.OK).body(routes);
     }
 
-    // Get route by ID
+    // Get route by ID(for edit)
     @GetMapping("/get/{id}")
     public ResponseEntity<Route> getRouteById(@PathVariable int id) {
         Route route = routeService.getRouteById(id);

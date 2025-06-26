@@ -20,6 +20,8 @@ public class BusDto {
 	    private String source;
 	    private String destination;
 	    private String contactNo;
+	  
+
 
 		public int getOperatorId() {
 			return operatorId;
@@ -103,7 +105,7 @@ public class BusDto {
 	            dto.setRouteId(bus.getRoute().getId());
 	            dto.setSource(bus.getRoute().getSource());
 	            dto.setDestination(bus.getRoute().getDestination());
-	            
+	       
 	            listDto.add(dto);
 	        });
 
